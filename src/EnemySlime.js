@@ -1,41 +1,36 @@
-var HoverHeight = 300; //ホバリング
-var RiseHeight = 240; //Rise上昇
+//var HoverHeight = 300; //ホバリング
+//var RiseHeight = 240; //Rise上昇
 
-var enemyBat;
+var enemySlime;
 
-var enemyLayer = cc.Layer.extend({
+var enemy3Layer = cc.Layer.extend({
    ctor: function() {
       this._super();
-      enemyBat = new EnemyBat();
-      this.addChild(enemyBat);
+      enemySlime = new EnemySlime();
+      this.addChild(enemySlime);
       //cc.eventManager.addListener(listener, this);
 
    }
 
 });
-var EnemyBat = cc.Sprite.extend({
+var EnemySlime = cc.Sprite.extend({
   ctor: function() {
     this._super();
-    this.initWithFile(res.bat_frames);
+    this.initWithFile(res.slime_g);
     this.velocity = cc.p(0, 0);
     this.FrameCount = 0;
 
-    for (i = 0; i < 7; i++) {　　　　　　
-      for (j = 0; j < 10; j++) {
-        if (level[i][j] == 5) {
           //this.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
-          this.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
-        }
-      }
-    }
+          this.setPosition(player.x - 150, player.y - 30);
+
 
     var animationframe = [];
     //スプライトフレームを格納する配列
-    var texture = cc.textureCache.addImage(res.bat_frames);
-    for (i = 0; i < 2; i++) {
-      for (j = 0; j < 2; j++) {
+    var texture = cc.textureCache.addImage(res.slime_g);
+    for (i = 0; i < 4; i++) {
+      for (j = 0; j < 4; j++) {
         //スプライトフレームを作成
-        var frame = new cc.SpriteFrame.createWithTexture(texture, cc.rect(160 * j, 96 * i, 160, 96));
+        var frame = new cc.SpriteFrame.createWithTexture(texture, cc.rect(128 * j, 64 * i, 128, 64));
         //スプライトフレームを配列に登録
         animationframe.push(frame);
       }
@@ -50,7 +45,7 @@ var EnemyBat = cc.Sprite.extend({
     this.scheduleUpdate();
 
   },
-
+/*
   update: function(dt) {
     this.FrameCount++;
     //4フレームに1回　こうもりの移動計算する
@@ -86,10 +81,12 @@ var EnemyBat = cc.Sprite.extend({
 
   }
 
-
+*/
 
 });
+/*
 //始点、終点、の間で 0～1.0の割合の位置を返す関数
 function lerp(fStart, fEnd, fPercent) {
   return fStart + ((fEnd - fStart) * fPercent);
 }
+*/

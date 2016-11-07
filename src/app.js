@@ -16,6 +16,8 @@ var leftBtn; //左ボタン
 var rightBtn; //右ボタン
 var jumpBtn; //ジャンプ
 var winSize;
+var curtain;
+var score = 0;
 
 var gameScene = cc.Scene.extend({
    onEnter: function() {
@@ -31,7 +33,19 @@ var gameScene = cc.Scene.extend({
       this.addChild(player);
       var enemys = new enemyLayer();
       this.addChild(enemys);
-   }
+      var enemys2 = new enemy2Layer();
+      this.addChild(enemys2);
+      var enemys3 = new enemy3Layer();
+      this.addChild(enemys3);
+
+      var panels = new panelsLayer();
+      this.addChild(panels);
+      var coin = new coinLayer();
+      this.addChild(coin);
+
+      var sparkle = new sparkleLayer();
+      this.addChild(sparkle);
+    }
 });
 
 
@@ -39,7 +53,7 @@ var backgroundLayer = cc.Layer.extend({
    ctor: function() {
       this._super();
 
-      var backgroundSprite = cc.Sprite.create(res.background_png);
+      var backgroundSprite = cc.Sprite.create(res.background_b);
       var size = backgroundSprite.getContentSize();
       //console.log(size);
       this.addChild(backgroundSprite);
@@ -47,10 +61,38 @@ var backgroundLayer = cc.Layer.extend({
       backgroundSprite.setPosition(winSize.width / 2, winSize.height / 2);
       //背景画像を画面の大きさに合わせるためのScaling処理
       backgroundSprite.setScale(winSize.width / size.width, winSize.height / size.height);
+
+      var bg_light_shafts = cc.Sprite.create(res.background_l_s);
+      var size = bg_light_shafts.getContentSize();
+      this.addChild(bg_light_shafts);
+      bg_light_shafts.setPosition(winSize.width / 2, winSize.height / 2);
+      bg_light_shafts.setScale(winSize.width / size.width, winSize.height / size.height);
+/*      //120秒の間に50回点滅させる
+      var tenmetsu = cc.Blink.create(120,50);
+      bg_light_shafts.runAction(cc.Sequence.create(tenmetsu));
+*/
+    /*  // フェードアウトさせ・・・・たい
+      var fadeout = cc.FadeOut.create(3);
+      bg_light_shafts.sprite.runAction(cc.Sequence.create(fadeout));
+*/
+
+      // カーテン
+      curtain = cc.Sprite.create(res.curtain);
+      this.addChild(curtain);
+      curtain.setPosition(winSize.width / 10, winSize.height / 1.89);
+      curtain.setScale(1.1);
+      curtain.setScale(winSize.width / size.width, winSize.height / size.height);
+   var curtain1 = cc.Sprite.create(res.curtain);
+      this.addChild(curtain1);
+      curtain1.setPosition(winSize.width / 1.1, winSize.height / 1.89);
+      curtain1.setFlippedX(true);
+      curtain1.setScale(1.1);
+      curtain1.setScale(winSize.width / size.width, winSize.height / size.height);
+
+
    }
 
 });
-
 var levelLayer = cc.Layer.extend({
    ctor: function() {
       this._super();
@@ -59,12 +101,12 @@ var levelLayer = cc.Layer.extend({
          for (j = 0; j < 10; j++) {
             switch (level[i][j]) {
                case 1:
-                  var groundSprite = cc.Sprite.create(res.ground_png);
-                  groundSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
+                  var groundSprite = cc.Sprite.create(res.background_f);
+                  groundSprite.setPosition(winSize.width / 2, winSize.height / 5);
                   this.addChild(groundSprite);
                   break;
                case 2:
-                  var blockSprite = cc.Sprite.create(res.block_png);
+                  var blockSprite = cc.Sprite.create(res.block);
                   blockSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
                   this.addChild(blockSprite);
                   break;
@@ -135,13 +177,13 @@ var Player = cc.Sprite.extend({
          }
       }
       //this.schedule(this.working,0.08);
-      /*
+/*
         // 2.　SpriteFrame　を利用しての歩行アニメーション
           //スプライトフレームを格納する配列
           var animationframe = [];
           //スプライトフレームを作成
-          var frame1 = new cc.SpriteFrame(res.player01_png, cc.rect(0, 0, 96, 96));
-          var frame2 = new cc.SpriteFrame(res.player02_png, cc.rect(0, 0, 96, 96));
+          var frame1 = new cc.SpriteFrame(res.sir, cc.rect(0, 0, 96, 96));
+          var frame2 = new cc.SpriteFrame(res.sir, cc.rect(0, 0, 96, 96));
           //スプライトフレームを配列に登録
           animationframe.push(frame1);
           animationframe.push(frame2);
@@ -151,7 +193,7 @@ var Player = cc.Sprite.extend({
           var action = new cc.RepeatForever(new cc.animate(animation));
           //実行
           this.runAction(action);
-      */
+*/
       /*
           //３．テクスチャーからスプライトフレームを切り出す方法
               //スプライトフレームを格納する配列
@@ -171,7 +213,7 @@ var Player = cc.Sprite.extend({
               this.runAction(action);
       */
 
-
+/*
       // スプライトシートをキャッシュに登録
       cc.spriteFrameCache.addSpriteFrames(res.player_plist, res.player_sheet);
 
@@ -192,6 +234,7 @@ var Player = cc.Sprite.extend({
       this.runAction(action);
 
       this.scheduleUpdate();
+      */
    },
 
 
@@ -218,7 +261,24 @@ var Player = cc.Sprite.extend({
    }
 
 });
+var panelsLayer = cc.Layer.extend({
+  ctor: function() {
+     this._super();
 
+     panel = cc.Sprite.create(res.ui_panels);
+     var size = panel.getContentSize();
+     this.addChild(panel);
+     panel.setPosition(winSize.width / 2, winSize.height / 1.05);
+     panel.setScale(0.65);
+
+/*    s_coin = cc.LabelTTF.create(score ,"Stencil Std","20",cc.TEXT_ALIGNMENT_CENTER);
+    s_coin.setScale(3);
+    var size = s_coin.getContentSize()
+    this.addChild(s_coin);
+    s_coin.setPosition(cc.p(size.width / 2, size.height / 2));
+    */
+   }
+});
 
 //タッチリスナーの実装
 var listener = cc.EventListener.create({
