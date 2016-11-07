@@ -194,7 +194,9 @@ var Player = cc.Sprite.extend({
           //実行
           this.runAction(action);
 */
-      /*
+
+//これ
+/*
           //３．テクスチャーからスプライトフレームを切り出す方法
               //スプライトフレームを格納する配列
               var texture = cc.textureCache.addImage(res.player_sheet);
@@ -211,9 +213,49 @@ var Player = cc.Sprite.extend({
               var action = new cc.RepeatForever(new cc.animate(animation));
               //実行
               this.runAction(action);
-      */
+*/
 
+          //３．テクスチャーからスプライトフレームを切り出す方法
+              //スプライトフレームを格納する配列
+              var texture0 = cc.textureCache.addImage(res.sir0);
+              var texture1 = cc.textureCache.addImage(res.sir1);
+              var texture2 = cc.textureCache.addImage(res.sir2);
+              var texture3 = cc.textureCache.addImage(res.sir3);
+              var texture4 = cc.textureCache.addImage(res.sir4);
+              var texture5 = cc.textureCache.addImage(res.sir5);
+              var texture6 = cc.textureCache.addImage(res.sir6);
+              var texture7 = cc.textureCache.addImage(res.sir7);
+              var texture8 = cc.textureCache.addImage(res.sir8);
+              var texture9 = cc.textureCache.addImage(res.sir9);
+              var texture10 = cc.textureCache.addImage(res.sir10);
+              var texture11 = cc.textureCache.addImage(res.sir11);
+              //スプライトフレームを作成
+              var frame0 = new cc.SpriteFrame.createWithTexture(texture0, cc.rect(0, 0, 132, 124));
+              var frame1 = new cc.SpriteFrame.createWithTexture(texture1, cc.rect(0, 0, 132, 124));
+              var frame2 = new cc.SpriteFrame.createWithTexture(texture2, cc.rect(0, 0, 132, 124));
+              var frame3 = new cc.SpriteFrame.createWithTexture(texture3, cc.rect(0, 0, 132, 124));
+              var frame4 = new cc.SpriteFrame.createWithTexture(texture4, cc.rect(0, 0, 132, 124));
+              var frame5 = new cc.SpriteFrame.createWithTexture(texture5, cc.rect(0, 0, 132, 124));
+              var frame6 = new cc.SpriteFrame.createWithTexture(texture6, cc.rect(0, 0, 132, 124));
+              var frame7 = new cc.SpriteFrame.createWithTexture(texture7, cc.rect(0, 0, 132, 124));
+              var frame8 = new cc.SpriteFrame.createWithTexture(texture8, cc.rect(0, 0, 132, 124));
+              var frame9 = new cc.SpriteFrame.createWithTexture(texture9, cc.rect(0, 0, 132, 124));
+              var frame10 = new cc.SpriteFrame.createWithTexture(texture10, cc.rect(0, 0, 132, 124));
+              var frame11 = new cc.SpriteFrame.createWithTexture(texture11, cc.rect(0, 0, 132, 124));
+              //スプライトフレームを配列に登録
+              var animationframe = [];
+              animationframe.push(frame1);
+              animationframe.push(frame2);
+              animationframe.push(frame3);
+              animationframe.push(frame4);
+              //スプライトフレームの配列を連続再生するアニメーションの定義
+              var animation = new cc.Animation(animationframe, 0.08);
+              //永久ループのアクションを定義
+              var action = new cc.RepeatForever(new cc.animate(animation));
+              //実行
+              this.runAction(action);
 
+/*
       // スプライトシートをキャッシュに登録
       cc.spriteFrameCache.addSpriteFrames(res.sir_pl, res.sir_awesome_frames);
 
@@ -236,7 +278,7 @@ var Player = cc.Sprite.extend({
       //実行
       this.initWithFile(res.player_sheet);
       this.runAction(action);
-
+*/
       this.scheduleUpdate();
 
    },

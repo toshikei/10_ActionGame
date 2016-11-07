@@ -37,7 +37,6 @@ var title = cc.Layer.extend({
 });
 
 
-
 var titleSence = cc.Scene.extend({
   onEnter: function(){
     this._super();

@@ -22,6 +22,18 @@ var res = {
    background_b: "res/background_back.png",
    background_f: "res/background_front.png",
    background_l_s: "res/background_light_shafts.png",
+   sir0: "res/sir0.png",
+   sir1: "res/sir1.png",
+   sir2: "res/sir2.png",
+   sir3: "res/sir3.png",
+   sir4: "res/sir4.png",
+   sir5: "res/sir5.png",
+   sir6: "res/sir6.png",
+   sir7: "res/sir7.png",
+   sir8: "res/sir8.png",
+   sir9: "res/sir9.png",
+   sir10: "res/sir10.png",
+   sir11: "res/sir11.png",
    //: "res/.png",
 
 
