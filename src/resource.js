@@ -4,6 +4,7 @@ var res = {
    rightbutton_png: "res/rightbutton.png",
 // 新たに追加したもの
    sir: "res/sir_awesome_frames.png",
+   sir_pl: "res/sir.plist",
    slime_g: "res/slime_green_frames.png",
    slime_r: "res/slime_red_frames.png",
    zombie: "res/zombie_frames.png",

@@ -213,18 +213,22 @@ var Player = cc.Sprite.extend({
               this.runAction(action);
       */
 
-/*
+
       // スプライトシートをキャッシュに登録
-      cc.spriteFrameCache.addSpriteFrames(res.player_plist, res.player_sheet);
+      cc.spriteFrameCache.addSpriteFrames(res.sir_pl, res.sir_awesome_frames);
 
       // スプライトフレームを取得 player01,player02はplistの中で定義されいいる
       var frame1 = cc.spriteFrameCache.getSpriteFrame("player01");
       var frame2 = cc.spriteFrameCache.getSpriteFrame("player02");
+      var frame3 = cc.spriteFrameCache.getSpriteFrame("player03");
+      var frame4 = cc.spriteFrameCache.getSpriteFrame("player04");
 
       //スプライトフレームを配列に登録
       var animationframe = [];
       animationframe.push(frame1);
       animationframe.push(frame2);
+      animationframe.push(frame3);
+      animationframe.push(frame4);
       //スプライトフレームの配列を連続再生するアニメーションの定義
       var animation = new cc.Animation(animationframe, 0.08);
       //永久ループのアクションを定義
@@ -234,7 +238,7 @@ var Player = cc.Sprite.extend({
       this.runAction(action);
 
       this.scheduleUpdate();
-      */
+
    },
 
 

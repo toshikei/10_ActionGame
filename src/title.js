@@ -9,10 +9,12 @@ var title = cc.Layer.extend({
     var title_back_layer = cc.Layer.create();
     title_back_layer.addChild(titlename);
     this.addChild(title_back_layer);
-    var label = cc.LabelTTF.create("Touch Start", "Arial", 60);
-     label.setPosition(cc.p(size.width * 0.5, size.height * 0.2));
-     label.setColor(cc.color(255, 255, 255, 128)); //色だよ！
-     this.addChild(label, 1);
+
+     Startname = new cc.Sprite(res.btn_play);
+     Startname.setPosition(cc.p(size.width * 0.5, size.height * 0.2));
+     var start_back_layer = cc.Layer.create();
+     start_back_layer.addChild(Startname);
+     this.addChild(start_back_layer);
 
     // タップイベントリスナーを登録する
      cc.eventManager.addListener({
